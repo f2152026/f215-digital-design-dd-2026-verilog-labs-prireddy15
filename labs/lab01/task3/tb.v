@@ -3,39 +3,19 @@
 // Works unchanged regardless of which implementation is currently active
 // inside dut.v.
 
-module tb;
-  reg  [3:0] t_a, t_b;
-  reg        t_cin;
-  wire [3:0] t_sum;
-  wire       t_cout;
+module cla4(
+  input  [3:0] a,
+  input  [3:0] b,
+  input        cin,
+  output [3:0] sum,
+  output       cout
+);
 
-  dut DUT (
-    .a    (t_a),
-    .b    (t_b),
-    .cin  (t_cin),
-    .sum  (t_sum),
-    .cout (t_cout)
-  );
+  wire p0, p1, p2, p3;
+  wire g0, g1, g2, g3;
+  wire c1, c2, c3;
 
-  // Waveform dump configuration
-  string vcd_file;
-  initial begin
-    if ($value$plusargs("vcd=%s", vcd_file)) begin
-      $dumpfile(vcd_file);
-      $dumpvars(0, DUT);
-    end
-  end
-
-  initial begin
-    t_a = 4'b0000; t_b = 4'b0000; t_cin = 0;
-    #20 t_a = 4'b0111; t_b = 4'b0001; t_cin = 0;   // worst-case ripple: carry crosses all 4 stages
-    #20 t_a = 4'b1111; t_b = 4'b0001; t_cin = 0;
-    #20 t_a = 4'b0101; t_b = 4'b0011; t_cin = 1;
-    #20 t_a = 4'b1010; t_b = 4'b0101; t_cin = 0;
-    #20 $finish;
-  end
-
-  initial
-    $monitor($time, " a=%b b=%b cin=%b | sum=%b cout=%b", t_a, t_b, t_cin, t_sum, t_cout);
+  // TODO: your gate-level P/G, carry, and sum logic goes here.
+  // (cout should be connected to c4.) Remember the delay on every gate.
 
 endmodule
