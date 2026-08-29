@@ -20,7 +20,6 @@
 //
 // TODO -- Step 3: sum bits
 //   sum[i] = p[i] ^ c[i]     (c0 = cin)
-
 module cla4(
   input  [3:0] a,
   input  [3:0] b,
@@ -37,3 +36,4 @@ module cla4(
   // (cout should be connected to c4.) Remember the delay on every gate.
 
 endmodule
+
